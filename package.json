@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "nm": "npx nodemon -I",
+    "dev": "npx tsc && node build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
