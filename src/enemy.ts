@@ -10,12 +10,15 @@ class Enemy{
     }
     attack(character: Character){
         let eAttack = Math.floor(Math.random() * 100)
-        let uHp = character.healthpoints;
-        let result = uHp-eAttack;
-        if (result <= 0){
-            result = 0
+        console.log(this.name+" did "+eAttack+" damage." +character.name+ " life was : "+character.healthpoints+".")
+        character.healthpoints = character.healthpoints - eAttack;
+        if ( character.healthpoints <= 0){
+            character.healthpoints = 0;
+            console.log(character.name+ "\'s life is know at : "+character.healthpoints)
+            console.log(character.name+ " is dead. You lose !")
+        }else {
+            console.log(character.name+ "\'s life is know at : "+(character.healthpoints))
         }
-        console.log("The enemy did "+eAttack+" damage. Your life was : "+uHp+". Your life is know at : "+result)
     }
 }
 export {Enemy};

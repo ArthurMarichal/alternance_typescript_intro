@@ -17,12 +17,17 @@ class Character{
     }
     attack(enemy: Enemy){
         let uAttack = Math.floor(Math.random() * 100)
-        let eHp = enemy.healthpoints;
-        let result = eHp-uAttack;
-        if (result <= 0){
-            result = 0
+        console.log("You did "+uAttack+" damage." +enemy.name+ " life was : "+enemy.healthpoints+".")
+        enemy.healthpoints = enemy.healthpoints - uAttack;
+        if ( enemy.healthpoints <= 0){
+            enemy.healthpoints = 0;
+            console.log(enemy.name+ "\'s life is know at : "+enemy.healthpoints)
+            console.log(enemy.name+ " is dead. Congrats !")
+        }else {
+            console.log(enemy.name+ "\'s life is know at : "+(enemy.healthpoints))
+            console.log(enemy.name+" attack you in return")
+            enemy.attack(this)
         }
-        console.log("You did "+uAttack+" damage. The "+enemy.name+"'s life was : "+eHp+". They are know at : "+result)
     }
 }
 export {Character};

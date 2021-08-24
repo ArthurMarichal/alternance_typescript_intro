@@ -35,21 +35,21 @@ const fight = [
 
     let character = new Character(response.gender, response.username);
     let enemy = new Enemy()
-    var ename = enemy.name;
 
     character.summary()
     console.log("No time for break, an enemy has already approaching.")
-    console.log(ename + " find you !")
-    if (enemy.healthpoints != 0) {
+    console.log(enemy.name + " find you !")
+    while (enemy.healthpoints > 0 && character.healthpoints > 0) {
         const fightResponse = await prompts(fight)
         if (fightResponse.combat == 1) {
-            console.log("You decided to fight " + ename + ".")
+            console.log("You decided to fight " + enemy.name + ".")
             character.attack(enemy)
+            console.log(character.healthpoints)
+            console.log(enemy.healthpoints)
         } else if (response.combat == 2) {
             console.log("You are a chicken ! You lose !")
         }
-    }else {
-        console.log(ename+" die. Congrats.")
     }
+
 })();
 
