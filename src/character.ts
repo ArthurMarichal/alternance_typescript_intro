@@ -42,6 +42,7 @@ class Character implements Fighter<Enemy>{
     }
     takeDamage(eAttack: number): any {
         this.healthpoints = this.healthpoints - eAttack * 0.5;
+        console.log("You have 50% damage reduction.")
     }
 
 
