@@ -1,6 +1,9 @@
 const prompts = require('prompts');
 import {Character} from "./character";
 import {Enemy} from "./enemy";
+/*
+Déclarations des prompts (Leur types, leurs noms, les messages à affichés, les éventuels choix)
+ */
 
 const startQuestions = [
     {
@@ -28,6 +31,9 @@ const fight = [
             {title: 'Fight back !', value: 2}
         ]}
 ];
+/*
+Fonction asynchrone afin que le joueur puisse intéragir
+ */
 
 (async () => {
     const response = await prompts(startQuestions);
@@ -43,7 +49,7 @@ const fight = [
         const fightResponse = await prompts(fight)
         if (fightResponse.combat == 1) {
             console.log("You decided to fight " + enemy.name + ".")
-            character.attack(enemy)
+            enemy.attack(character)
             console.log(character.healthpoints)
             console.log(enemy.healthpoints)
         } else if (response.combat == 2) {

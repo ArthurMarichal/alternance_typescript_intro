@@ -1,24 +1,39 @@
 import {Character} from "./character";
+import {Fighter} from "./Interface/fighter";
 
-class Enemy{
+class Enemy implements Fighter <Character>{
+    /*
+    Typage
+     */
     name: string;
     healthpoints: number;
 
+    /*
+    Constructeur
+     */
     constructor() {
         this.name = "Diablotin"
         this.healthpoints = 20
     }
-    attack(character: Character){
+    /*
+    Méthode
+     */
+    // @ts-ignore
+    attack(fighter: Character){
         let eAttack = Math.floor(Math.random() * 100)
-        console.log(this.name+" did "+eAttack+" damage." +character.name+ " life was : "+character.healthpoints+".")
-        character.healthpoints = character.healthpoints - eAttack;
-        if ( character.healthpoints <= 0){
-            character.healthpoints = 0;
-            console.log(character.name+ "\'s life is know at : "+character.healthpoints)
-            console.log(character.name+ " is dead. You lose !")
+        console.log(fighter.name+" did "+eAttack+" damage." +this.name+ " life was : "+this.healthpoints+".")
+        this.takeDamage(eAttack);
+        if ( this.healthpoints <= 0){
+            this.healthpoints = 0;
+            console.log(this.name+ "\'s life is know at : "+this.healthpoints)
+            console.log(this.name+ " is dead.")
         }else {
-            console.log(character.name+ "\'s life is know at : "+(character.healthpoints))
+            console.log(this.name+ "\'s life is know at : "+(this.healthpoints))
+            fighter.attack(this)
         }
+    }
+    takeDamage(eAttack: number): any {
+        this.healthpoints = this.healthpoints - eAttack;
     }
 }
 export {Enemy};
