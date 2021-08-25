@@ -1,12 +1,13 @@
 import {Character} from "./character";
 import {Fighter} from "./Interface/fighter";
 
-class Enemy implements Fighter <Character>{
+export class Enemy implements Fighter <Character>{
     /*
     Typage
      */
     name: string;
     healthpoints: number;
+    damage: number;
 
     /*
     Constructeur
@@ -14,15 +15,16 @@ class Enemy implements Fighter <Character>{
     constructor() {
         this.name = "Diablotin"
         this.healthpoints = 20
+        this.damage = 0
     }
     /*
     Méthode
      */
     // @ts-ignore
     attack(fighter: Character){
-        let eAttack = Math.floor(Math.random() * 100)
-        console.log(fighter.name+" did "+eAttack+" damage." +this.name+ " life was : "+this.healthpoints+".")
-        this.takeDamage(eAttack);
+        let damage = Math.floor(Math.random() * 100)
+        console.log(fighter.name+" did "+damage+" damage." +this.name+ " life was : "+this.healthpoints+".")
+        this.takeDamage(damage);
         if ( this.healthpoints <= 0){
             this.healthpoints = 0;
             console.log(this.name+ "\'s life is know at : "+this.healthpoints)
@@ -32,8 +34,7 @@ class Enemy implements Fighter <Character>{
             fighter.attack(this)
         }
     }
-    takeDamage(eAttack: number): any {
-        this.healthpoints = this.healthpoints - eAttack;
+    takeDamage(damage: number): any {
+        this.healthpoints = this.healthpoints - damage;
     }
 }
-export {Enemy};
